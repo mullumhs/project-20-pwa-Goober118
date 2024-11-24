@@ -4,10 +4,10 @@ db = SQLAlchemy()
 
 # Define your database model here
 # Example: class Item(db.Model):
-class Game(db.Model)
-    id = db.Collumn(db.integer, primary_key = True)
-    title = db. Collumn(db.string(200), Nullable = False)
-    publisher = db.Collumn(db.string(100), Nullable = True)
-    date = db.Collumn(db.integer, primary)
-    rating = db.Collumn(db.float, Nullable = True)
-    genre = db.Collumn(db.string, Nullable = True)
+class Game(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    title = db. Column(db.String(200))
+    publisher = db.Column(db.String(100))
+    date = db.Column(db.Integer)
+    rating = db.Column(db.Float)
+    genre = db.Column(db.String)
