@@ -16,11 +16,27 @@ def init_routes(app):
 
 
 
-    @app.route('/add', methods=['POST'])
-    def create_item():
-        # This route should handle adding a new item to the database.
-        return render_template('index.html', message='Item added successfully')
+    @app.route('/add', methods=['GET', 'POST'])
 
+    def add_item():
+
+        if request.method == 'POST':
+
+            # Handle form submission (POST request)
+
+            # Extract item data from form
+
+            # Add item to database
+
+            # Redirect to a success page or item list
+
+            return redirect(url_for('index'))
+
+        else:
+
+            # Display the add item form (GET request)
+            
+            return render_template('add_item.html')
 
 
     @app.route('/update', methods=['POST'])

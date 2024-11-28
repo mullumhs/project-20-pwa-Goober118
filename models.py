@@ -11,3 +11,4 @@ class Game(db.Model):
     date = db.Column(db.Integer)
     rating = db.Column(db.Float)
     genre = db.Column(db.String)
+    description = db.Column(db.String)
