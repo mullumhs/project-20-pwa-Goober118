@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from models import db # Also import your database model here
+from models import db, Game # Also import your database model here
 
 # Define your routes inside the 'init_routes' function
 # Feel free to rename the routes and functions as you see fit
@@ -10,9 +10,10 @@ from models import db # Also import your database model here
 def init_routes(app):
 
     @app.route('/', methods=['GET'])
-    def get_items():
+    def index():
         # This route should retrieve all items from the database and display them on the page.
-        return render_template('index.html', message='Displaying all items')
+        games = Game.query.all()
+        return render_template('index.html', games = games) 
 
 
 
@@ -25,9 +26,16 @@ def init_routes(app):
             # Handle form submission (POST request)
 
             # Extract item data from form
-
+            title = request.form.get('name')
+            publisher = request.form.get('publisher')
+            date = request.form.get('date')
+            rating = request.form.get('rating')
+            genre = request.form.get('genre')
+            description = request.form.get('description')
             # Add item to database
-
+            new_item = Game(title = title, publisher=publisher, date = date, rating = rating, genre = genre, description = description)
+            db.session.add(new_item)
+            db.session.commit()
             # Redirect to a success page or item list
 
             return redirect(url_for('index'))
