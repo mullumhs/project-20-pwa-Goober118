@@ -26,14 +26,14 @@ def init_routes(app):
             # Handle form submission (POST request)
 
             # Extract item data from form
-            title = request.form.get('name')
+            title = request.form.get('title')
             publisher = request.form.get('publisher')
             date = request.form.get('date')
             rating = request.form.get('rating')
             genre = request.form.get('genre')
             description = request.form.get('description')
             # Add item to database
-            new_item = Game(title = title, publisher=publisher, date = date, rating = rating, genre = genre, description = description)
+            new_item = Game(title = title, publisher = publisher, date = date, rating = rating, genre = genre, description = description)
             db.session.add(new_item)
             db.session.commit()
             # Redirect to a success page or item list

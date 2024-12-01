@@ -9,6 +9,6 @@ class Game(db.Model):
     title = db.Column(db.String(200))
     publisher = db.Column(db.String(100))
     date = db.Column(db.Integer)
-    rating = db.Column(db.Float)
+    rating = db.Column(db.Integer)
     genre = db.Column(db.String)
     description = db.Column(db.String)

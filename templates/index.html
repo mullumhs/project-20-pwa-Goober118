@@ -14,23 +14,12 @@
           alt="..."
         />
         <div class="card-body">
-          <p>
-            <button
-              class="btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseExample"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-            >
-              Button with data-bs-target
-            </button>
-          </p>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-              <p>{{game.year}}</p>
-            </div>
-          </div>
+          <p><strong>Title: </strong>{{game.title}}</p>
+          <p><strong>Publisher: </strong>{{game.publisher}}</p>
+          <p><strong>Release Year: </strong>{{game.date}}</p>
+          <p><strong>Rating: </strong>{{game.rating}}/10</p>
+          <p><strong>Genre: </strong>{{game.genre}}</p>
+          <p><strong>Description: </strong>{{game.description}}</p>
           <!-- Button trigger edit modal -->
           <button
             type="button"
