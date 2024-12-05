@@ -20,29 +20,15 @@
           <p><strong>Rating: </strong>{{game.rating}}/10</p>
           <p><strong>Genre: </strong>{{game.genre}}</p>
           <p><strong>Description: </strong>{{game.description}}</p>
-          <!-- Button trigger edit modal -->
-          <button
-            type="button"
+          <a
             class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#editModal"
+            href="{{url_for('view_item')}}"
+            role="button"
+            >View Details</a
           >
-            Edit
-          </button>
-          <!-- Button trigger delete modal -->
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#deleteModal"
-          >
-            Delete
-          </button>
         </div>
       </div>
     </div>
-    <!-- Modal -->
-
     {%endfor%}
   </div>
 

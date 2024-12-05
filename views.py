@@ -58,3 +58,9 @@ def init_routes(app):
     def delete_item():
         # This route should handle deleting an existing item identified by the given ID.
         return render_template('index.html', message=f'Item deleted successfully')
+    
+    @app.route('/view', methods=['GET'])
+    def view_item():
+        id = request.args.get('id')
+        game = Game.query.get(id)
+        return render_template('index.html', game = game)
