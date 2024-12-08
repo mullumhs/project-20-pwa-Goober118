@@ -63,4 +63,4 @@ def init_routes(app):
     def view_item():
         id = request.args.get('id')
         game = Game.query.get(id)
-        return render_template('index.html', game = game)
+        return render_template('view_item.html', game = game)
