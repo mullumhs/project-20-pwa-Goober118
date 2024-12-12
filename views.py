@@ -26,6 +26,7 @@ def init_routes(app):
             # Handle form submission (POST request)
 
             # Extract item data from form
+            image = request.form.get('image')
             title = request.form.get('title')
             publisher = request.form.get('publisher')
             date = request.form.get('date')
@@ -33,7 +34,7 @@ def init_routes(app):
             genre = request.form.get('genre')
             description = request.form.get('description')
             # Add item to database
-            new_item = Game(title = title, publisher = publisher, date = date, rating = rating, genre = genre, description = description)
+            new_item = Game(image = image, title = title, publisher = publisher, date = date, rating = rating, genre = genre, description = description)
             db.session.add(new_item)
             db.session.commit()
             # Redirect to a success page or item list
@@ -47,11 +48,33 @@ def init_routes(app):
             return render_template('add_item.html')
 
 
-    @app.route('/update', methods=['POST'])
-    def update_item():
-        # This route should handle updating an existing item identified by the given ID.
-        return render_template('index.html', message=f'Item updated successfully')
+    @app.route('/edit', methods=['GET', 'POST'])
+    def edit_item():
 
+        if request.method == 'POST':
+            id = request.form.get('id')
+            game = Game.query.get(id)
+            # Handle form submission (POST request)
+
+            # Extract item data from form
+            game.title = request.form.get('title')
+            game.publisher = request.form.get('publisher')
+            game.date = request.form.get('date')
+            game.rating = request.form.get('rating')
+            game.genre = request.form.get('genre')
+            game.description = request.form.get('description')
+            # Add item to database
+            db.session.commit()
+            # Redirect to a success page or item list
+
+            return redirect(url_for('index'))
+
+        else:
+
+            # Display the add item form (GET request)
+            id = request.args.get('id')
+            game = Game.query.get(id)
+            return render_template('edit_item.html', game = game)
 
 
     @app.route('/delete', methods=['POST'])
