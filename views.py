@@ -57,6 +57,7 @@ def init_routes(app):
             # Handle form submission (POST request)
 
             # Extract item data from form
+            game.image = request.form.get('image')
             game.title = request.form.get('title')
             game.publisher = request.form.get('publisher')
             game.date = request.form.get('date')
@@ -77,11 +78,15 @@ def init_routes(app):
             return render_template('edit_item.html', game = game)
 
 
-    @app.route('/delete', methods=['POST'])
+    @app.route('/delete', methods=['GET'])
     def delete_item():
         # This route should handle deleting an existing item identified by the given ID.
-        return render_template('index.html', message=f'Item deleted successfully')
-    
+        id = request.args.get('id')
+        game = Game.query.get(id)
+        db.session.delete(game)
+        db.session.commit()
+        return redirect(url_for('index'))
+
     @app.route('/view', methods=['GET'])
     def view_item():
         id = request.args.get('id')

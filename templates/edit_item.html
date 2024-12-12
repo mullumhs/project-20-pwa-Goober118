@@ -9,6 +9,17 @@
     <input
       type="text"
       class="form-control"
+      id="image"
+      placeholder="Input the image src"
+      name="image"
+      value="{{game.image}}"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
       id="title"
       placeholder="Input the title of the game"
       name="title"
@@ -60,17 +71,18 @@
     />
   </div>
   <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
-    <textarea
+    <label for="genre" class="form-label">Description</label>
+    <input
       type="text"
       class="form-control"
       id="description"
       rows="3"
-      placeholder="Enter a description"
+      placeholder="Enter a description of the game"
       name="description"
       value="{{game.description}}"
-    ></textarea>
+    />
   </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <!-- Add your page-specific content here -->
