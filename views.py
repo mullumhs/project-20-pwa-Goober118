@@ -6,9 +6,14 @@ def init_routes(app):
     # Route for the home page
     @app.route('/', methods=['GET'])
     def index():
-        # Retrieve items from database and display them on the page
-        games = Game.query.all()
-        return render_template('index.html', games = games) 
+        search_query = request.args.get('query')
+        if search_query:
+        # If there's a search query, filter the results
+            games = Game.query.filter(Game.title.ilike(f'%{search_query}%')).all()
+        else:
+        # If no search query, return all items
+            games = Game.query.all()
+        return render_template('index.html', games = games)
 
     # Route to add a new game
     @app.route('/add', methods=['GET', 'POST'])
