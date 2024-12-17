@@ -1,0 +1,70 @@
+/* Custom styles for cards */
+
+.card {
+
+    transition: transform 0.3s ease-in-out;
+
+}
+
+
+
+.card:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+
+/* Custom button style */
+
+.btn-custom {
+
+    background-color: #0096FF;
+
+    color: white;
+
+}
+
+
+
+.btn-custom:hover {
+
+    background-color: #5541d8 !important;
+
+    color: white !important;
+
+    transform: scale(1.05);
+}
+
+
+
+/* Custom background for specific sections */
+
+.custom-bg {
+
+    background-color: #363737;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+}
+
+.white {
+
+    color: #ffffff;
+
+}
+
+.subtitle {
+    
+    font-size: 150%;
+
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}

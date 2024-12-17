@@ -1,32 +1,27 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
-
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
 <body>
   <!-- Container for content -->
   <div class="container mt-4">
     <h1 class="mb-4" style="text-align: center">The Video Game Database</h1>
+    
+    <!-- Start of the row to wrap all the columns (cards) -->
     <div class="row">
-      {%for game in games%}
+      {% for game in games %}
+      <!-- Each card gets a responsive column class -->
       <div class="col-12 col-md-6 col-lg-4">
-        <div class="card mb-4">
-          <img src="{{game.image}}" class="card-img-top" alt="..." />
+        <div class="card custom-bg mb-4">
+          <img src="{{ game.image }}" class="card-img-top" alt="..." />
           <div class="card-body">
-            <p><strong>{{game.title}}</strong></p>
-            <a
-              class="btn btn-primary"
-              href="{{url_for('view_item', id=game.id)}}"
-              role="button"
-              >View Details
-            </a>
+            <p class="white subtitle"><strong>{{ game.title }}</strong></p>
+            <a class="btn btn-custom" href="{{ url_for('view_item', id=game.id) }}" role="button">View Details</a>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-
-    {%endfor%}
+    <!-- End of the row -->
   </div>
-
-  <!-- Card Dropdown -->
-
-  {% endblock %}
 </body>
+{% endblock %}
