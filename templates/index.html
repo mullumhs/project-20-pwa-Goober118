@@ -4,12 +4,13 @@
 <body>
   <!-- Container for content -->
   <div class="container mt-4">
+
+    <!-- Heading -->
     <h1 class="mb-4" style="text-align: center">The Video Game Database</h1>
     
-    <!-- Start of the row to wrap all the columns (cards) -->
+    <!-- Row for the individual game cards -->
     <div class="row">
       {% for game in games %}
-      <!-- Each card gets a responsive column class -->
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card custom-bg mb-4">
           <img src="{{ game.image }}" class="card-img-top" alt="..." />
@@ -21,7 +22,6 @@
       </div>
       {% endfor %}
     </div>
-    <!-- End of the row -->
   </div>
 </body>
 {% endblock %}

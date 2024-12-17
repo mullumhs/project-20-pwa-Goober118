@@ -2,8 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-# Define your database model here
-# Example: class Item(db.Model):
+# Define database model
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     image = db.Column(db.String)

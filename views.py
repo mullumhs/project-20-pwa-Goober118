@@ -1,30 +1,19 @@
 from flask import render_template, request, redirect, url_for, flash
-from models import db, Game # Also import your database model here
-
-# Define your routes inside the 'init_routes' function
-# Feel free to rename the routes and functions as you see fit
-# You may need to use multiple methods such as POST and GET for each route
-# You can use render_template or redirect as appropriate
-# You can also use flash for displaying status messages
+from models import db, Game 
 
 def init_routes(app):
 
+    # Route for the home page
     @app.route('/', methods=['GET'])
     def index():
-        # This route should retrieve all items from the database and display them on the page.
+        # Retrieve items from database and display them on the page
         games = Game.query.all()
         return render_template('index.html', games = games) 
 
-
-
+    # Route to add a new game
     @app.route('/add', methods=['GET', 'POST'])
-
     def add_item():
-
         if request.method == 'POST':
-
-            # Handle form submission (POST request)
-
             # Extract item data from form
             image = request.form.get('image')
             title = request.form.get('title')
@@ -33,28 +22,24 @@ def init_routes(app):
             rating = request.form.get('rating')
             genre = request.form.get('genre')
             description = request.form.get('description')
-            # Add item to database
+            # Create a new game object and add it to the database
             new_item = Game(image = image, title = title, publisher = publisher, date = date, rating = rating, genre = genre, description = description)
             db.session.add(new_item)
             db.session.commit()
-            # Redirect to a success page or item list
 
+            # Redirect to the homepage after adding the game
             return redirect(url_for('index'))
 
         else:
-
-            # Display the add item form (GET request)
-            
             return render_template('add_item.html')
 
-
+    # Route to edit an existing game
     @app.route('/edit', methods=['GET', 'POST'])
     def edit_item():
 
         if request.method == 'POST':
             id = request.form.get('id')
             game = Game.query.get(id)
-            # Handle form submission (POST request)
 
             # Extract item data from form
             game.image = request.form.get('image')
@@ -64,10 +49,11 @@ def init_routes(app):
             game.rating = request.form.get('rating')
             game.genre = request.form.get('genre')
             game.description = request.form.get('description')
-            # Add item to database
+            
+            # Commit the changes to the database
             db.session.commit()
-            # Redirect to a success page or item list
-
+            
+            # Redirect to the home pagr
             return redirect(url_for('index'))
 
         else:
@@ -77,16 +63,17 @@ def init_routes(app):
             game = Game.query.get(id)
             return render_template('edit_item.html', game = game)
 
-
+    # Route to delete a game
     @app.route('/delete', methods=['GET'])
     def delete_item():
-        # This route should handle deleting an existing item identified by the given ID.
+        # Get the id of the game to delete, retrieve and then delete from the database
         id = request.args.get('id')
         game = Game.query.get(id)
         db.session.delete(game)
         db.session.commit()
         return redirect(url_for('index'))
 
+    # Route to view the details of a single game
     @app.route('/view', methods=['GET'])
     def view_item():
         id = request.args.get('id')

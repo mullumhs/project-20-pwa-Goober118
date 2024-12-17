@@ -51,11 +51,15 @@
 
 }
 
+/* Custom white colour for text */
+
 .white {
 
     color: #ffffff;
 
 }
+
+/* Custom text size for subtitle */
 
 .subtitle {
     
@@ -63,8 +67,15 @@
 
 }
 
+/* Custom sizing for home page card images */
+
 .card-img-top {
-    height: 200px;
+    height: 100%;
     object-fit: cover;
     width: 100%;
+    border-radius: 5%;
+}
+
+.card {
+    border-radius: 5%;
 }
