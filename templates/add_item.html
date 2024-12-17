@@ -1,8 +1,10 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 
+<!--Page Title-->
 <h1 style="text-align: center">Add a Game</h1>
 <form method="POST" action="/add">
+  <!--Image Input-->
   <div class="mb-3">
     <label for="image" class="form-label">Image</label>
     <input
@@ -13,6 +15,7 @@
       name="image"
     />
   </div>
+  <!--Title Input-->
   <div class="mb-3">
     <label for="title" class="form-label">Title</label>
     <input
@@ -26,6 +29,7 @@
       maxlength="100"
     />
   </div>
+  <!--Publisher Input-->
   <div class="mb-3">
     <label for="publisher" class="form-label">Publisher</label>
     <input
@@ -39,6 +43,7 @@
       maxlength="100"
     />
   </div>
+  <!--Date Input-->
   <div class="mb-3">
     <label for="date" class="form-label">Release Year</label>
     <input
@@ -49,6 +54,7 @@
       name="date"
     />
   </div>
+  <!--Rating Input--> 
   <div class="mb-3">
     <label for="rating" class="form-label">Rating</label>
     <input
@@ -59,6 +65,7 @@
       name="rating"
     />
   </div>
+  <!--Genre Input-->
   <div class="mb-3">
     <label for="genre" class="form-label">Genre</label>
     <input
@@ -69,6 +76,7 @@
       name="genre"
     />
   </div>
+  <!--Description Input-->
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
     <textarea
@@ -80,6 +88,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<!-- Add your page-specific content here -->
-
 {% endblock %}
