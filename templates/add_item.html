@@ -47,22 +47,26 @@
   <div class="mb-3">
     <label for="date" class="form-label">Release Year</label>
     <input
-      type="text"
+      type="number"
       class="form-control"
       id="date"
       placeholder="Input the year the game was released"
       name="date"
+      required min="1958"
+      max="2024"
     />
   </div>
   <!--Rating Input--> 
   <div class="mb-3">
     <label for="rating" class="form-label">Rating</label>
     <input
-      type="text"
+      type="number"
       class="form-control"
       id="rating"
       placeholder="Enter the rating 1-10"
       name="rating"
+      required min="1"
+      max="10"
     />
   </div>
   <!--Genre Input-->
@@ -74,6 +78,8 @@
       id="genre"
       placeholder="Enter the genre of the game"
       name="genre"
+      minlength="2"
+      maxlength="100"
     />
   </div>
   <!--Description Input-->
@@ -84,6 +90,9 @@
       id="description"
       rows="3"
       name="description"
+      placeholder="Enter a description of the game"
+      minlength="2"
+      maxlength="800"
     ></textarea>
   </div>
   <button type="submit" class="btn btn-custom">Submit</button>

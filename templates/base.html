@@ -21,8 +21,13 @@
     />
   </head>
 
-  <!--Navbar-->
+  <!-- Navbar -->
   <body>
+
+    <!-- Goofy audio player (for user engagement) -->
+    <audio autoplay loop style="display: none;">
+      <source src="{{url_for('static', filename='audio/goofy.mp3')}}" type="audio/mpeg">
+    </audio>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">VideoGameDB</a>
@@ -39,7 +44,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <!--Home Button-->
+            <!-- Home Button -->
             <li class="nav-item">
               <a
                 class="nav-link active"
@@ -48,7 +53,7 @@
                 >Home</a
               >
             </li>
-            <!--Add Button-->
+            <!-- Add Button -->
             <li class="nav-item">
               <a
                 class="nav-link active"
@@ -58,7 +63,8 @@
               >
             </li>
           </ul>
-          <form action="{{url_for('index')}}" method="get" class="d-flex">
+          <!-- Search bar -->
+          <form action="{{url_for('index')}}" method="get" class="d-flex w-50">
 
             <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
         
@@ -68,7 +74,36 @@
         </div>
       </div>
     </nav>
+    <!-- Success message -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
 
+      {% if messages %}
+
+        {% for category, message in messages %}
+
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+
+            {{ message }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+          </div>
+
+        {% endfor %}
+
+      {% endif %}
+
+    {% endwith %}
+    <script>
+      // Auto-dismiss alert after 3 seconds
+      setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+          var bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+          bsAlert.close();
+        });
+      }, 3000);
+    </script>
     <!-- Container for content -->
 
     <div class="container mt-4">{% block content %} {% endblock %}</div>

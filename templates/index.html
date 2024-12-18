@@ -6,14 +6,29 @@
   <div class="container mt-4">
 
     <!-- Heading -->
-    <h1 class="mb-4" style="text-align: center">The Video Game Database</h1>
+    <h1 class="mb-4 title" style="text-align: center">The Video Game Database</h1>
+    <div class="card custom-bg mb-4">
+      <div class="card-body">
+        <p class="white small-title" style="text-align: center"><strong>Filter Results</strong></p>
+        <form action="{{ url_for('index') }}" method="get">
+
+          <input type="number" name="rating" class="form-control mt-2" placeholder="Filter by rating" value="{{request.args.get('rating', '')}}" min="1" max="10">
+          <input type="number" name="date" class="form-control mt-2" placeholder="Filter by year" value="{{request.args.get('date', '')}}" min="1958" max="2024">
+      
+          <button type="submit" class="btn btn-custom mt-2">Filter</button>
+          <a href="{{url_for('index')}}" class="btn btn-custom mt-2">Reset Filters</a>
+        </form>
+      </div>
+    </div>
+    
     
     <!-- Row for the individual game cards -->
     <div class="row">
       {% for game in games %}
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card custom-bg mb-4">
-          <img src="{{ game.image }}" class="card-img-top" alt="..." />
+          <img src="{{ game.image }}" class="card-img-top" alt="..." 
+          onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/placeholder_image.png') }}';" />
           <div class="card-body">
             <p class="white subtitle"><strong>{{ game.title }}</strong></p>
             <a class="btn btn-custom" href="{{ url_for('view_item', id=game.id) }}" role="button">View Details</a>

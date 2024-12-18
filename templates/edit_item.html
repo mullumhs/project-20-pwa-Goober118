@@ -28,6 +28,8 @@
       placeholder="Input the title of the game"
       name="title"
       value="{{game.title}}"
+      minlength="2"
+      maxlength="100"
     />
   </div>
   <!--Edit Publisher-->
@@ -40,30 +42,36 @@
       placeholder="Input the game's publisher"
       name="publisher"
       value="{{game.publisher}}"
+      minlength="2"
+      maxlength="100"
     />
   </div>
   <!--Edit Date-->
   <div class="mb-3">
     <label for="date" class="form-label">Release Year</label>
     <input
-      type="text"
+      type="number"
       class="form-control"
       id="date"
       placeholder="Input the year the game was released"
       name="date"
       value="{{game.date}}"
+      required min="1958"
+      required max="2024"
     />
   </div>
   <!--Edit Rating-->
   <div class="mb-3">
     <label for="rating" class="form-label">Rating</label>
     <input
-      type="text"
+      type="number"
       class="form-control"
       id="rating"
       placeholder="Enter the rating 1-10"
       name="rating"
       value="{{game.rating}}"
+      required min="1"
+      required max="10"
     />
   </div>
   <!--Edit Genre-->
@@ -76,6 +84,8 @@
       placeholder="Enter the genre of the game"
       name="genre"
       value="{{game.genre}}"
+      minlength="2"
+      maxlength="100"
     />
   </div>
   <!--Edit Description-->
@@ -89,6 +99,8 @@
       placeholder="Enter a description of the game"
       name="description"
       value="{{game.description}}"
+      minlength="2"
+      maxlength="800"
     />
   </div>
 

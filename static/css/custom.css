@@ -63,6 +63,14 @@
 
 }
 
+.small-title {
+    font-size: 300%;
+}
+
+.title {
+    font-size: 400%;
+}
+
 /* Custom sizing for home page card images */
 
 .card-img-top {

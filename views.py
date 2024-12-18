@@ -7,12 +7,23 @@ def init_routes(app):
     @app.route('/', methods=['GET'])
     def index():
         search_query = request.args.get('query')
+        rating = request.args.get('rating', '')
+        date = request.args.get('date', '')
+
+        games = Game.query
+
         if search_query:
         # If there's a search query, filter the results
-            games = Game.query.filter(Game.title.ilike(f'%{search_query}%')).all()
-        else:
-        # If no search query, return all items
-            games = Game.query.all()
+            games = Game.query.filter(Game.title.ilike(f'%{search_query}%'))
+
+        if rating:
+            games = games.filter_by(rating=rating)
+
+        if date:
+            games = games.filter_by(date=date)
+
+        games = games.all()
+
         return render_template('index.html', games = games)
 
     # Route to add a new game
@@ -27,11 +38,43 @@ def init_routes(app):
             rating = request.form.get('rating')
             genre = request.form.get('genre')
             description = request.form.get('description')
+            
+            errors = []    # List of errors encountered
+
+            if not title or len(title) < 2 or len(title) > 100:
+
+                errors.append("Name must be between 2 and 100 characters.")
+
+            try:
+
+                date = int(date)
+
+                if date < 1958 or date > 2024:
+
+                    errors.append("Year must be between 1958 and 2024.")
+    
+            except ValueError:
+
+                errors.append("Invalid year format.")
+
+            if errors:
+
+                error_message = "".join(errors)    # Join error list
+
+                flash(error_message, 'danger')
+
+                return redirect(url_for('add_item'))
+
+    
+
+    # If validation passes, add item to database (code not shown)
+
+            
             # Create a new game object and add it to the database
             new_item = Game(image = image, title = title, publisher = publisher, date = date, rating = rating, genre = genre, description = description)
             db.session.add(new_item)
             db.session.commit()
-
+            flash('Item added successfully!', 'success')
             # Redirect to the homepage after adding the game
             return redirect(url_for('index'))
 
